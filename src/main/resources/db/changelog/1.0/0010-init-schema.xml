@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- OWNER -->
+    <changeSet id="create table OWNER" author="fadi">
+        <createTable tableName="OWNER">
+            <column name="ID" type="${uid-type}">
+                <constraints primaryKey="true" primaryKeyName="PK_OWNER"/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR2(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_NAME" type="VARCHAR2(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IMMATRICULATION_NUMBER" type="VARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="create sequence OWNER" author="fadi">
+        <createSequence sequenceName="SEQ_OWNER" cacheSize="20"/>
+    </changeSet>
+
+    <!-- AUDIENCE LANGUAGE -->
+    <changeSet id="create table ACCOUNT" author="fadi">
+        <createTable tableName="ACCOUNT">
+            <column name="ID" type="${uid-type}">
+                <constraints primaryKey="true" primaryKeyName="PK_ACCOUNT"/>
+            </column>
+            <column name="OWNER_ID" type="${uid-type}">
+                <constraints foreignKeyName="FK_ACCOUNT_OWNER"
+                             referencedTableName="OWNER"
+                             referencedColumnNames="ID"
+                             nullable="false"/>
+            </column>
+            <column name="ACCOUNT_NUMBER" type="VARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ACCOUNT_TYPE" type="VARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CURRENCY" type="VARCHAR2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="BALANCE" type="DECIMAL(19,2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="create sequence ACCOUNT" author="fadi">
+        <createSequence sequenceName="SEQ_ACCOUNT" cacheSize="20"/>
+    </changeSet>
+
+    <!-- TRANSACTION -->
+    <changeSet id="create table TRANSACTION" author="fadi">
+        <createTable tableName="INDEXING_PROCESS">
+            <column name="ID" type="${uid-type}">
+                <constraints primaryKey="true" primaryKeyName="PK_INDEXING_PROCESS"/>
+            </column>
+            <column name="TRANSACTION_DATE" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TRANSACTION_TYPE" type="VARCHAR2(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AMOUNT" type="DECIMAL(19,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TRANSACTION_REFERENCE" type="VARCHAR2(110)">
+                <constraints nullable="false"/>
+            </column>
+            
+            <column name="ACCOUNT_ID" type="${uid-type}">
+                <constraints foreignKeyName="FK_TRANSACTION_ACCOUNT" referencedTableName="ACCOUNT"
+                             referencedColumnNames="ID" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create sequence TRANSACTION" author="fadi">
+        <createSequence sequenceName="SEQ_TRANSACTION" cacheSize="20"/>
+    </changeSet>
+
+</databaseChangeLog>

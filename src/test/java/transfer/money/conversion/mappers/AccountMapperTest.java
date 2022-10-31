@@ -29,7 +29,7 @@ public class AccountMapperTest extends TestsBase{
 	            accountDto = new AccountDto(1L, "1111333344445555", "CURRENT","EUR" , new BigDecimal(1000000));
 	            ownerDto = new OwnerDto(3L,"fadi","fantado","ERFG4321245");
 	            accountDto.setOwnerDto(ownerDto);
-	            accountDtos = new ArrayList<AccountDto>();
+	            accountDtos = new ArrayList<>();
 	            accountDtos.add(accountDto);
 	  		}
 

@@ -31,7 +31,7 @@ public class Owner {
     private String immatriculationSocialNumber;
     
     @OneToMany(mappedBy = "owner",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Account> accounts = new ArrayList<Account>();
+    private List<Account> accounts = new ArrayList<>();
 
 	public Long getId() {
 		return id;

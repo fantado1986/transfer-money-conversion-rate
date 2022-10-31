@@ -25,7 +25,7 @@ public class OwnerMapperTest  extends TestsBase{
 	    @BeforeEach
 	  		public void setUp() { 
 	            owner = new Owner(3L,"fadi","fantado","ERFG4321245");
-	            owners = new ArrayList<Owner>();
+	            owners = new ArrayList<>();
 	            owners.add(owner);
 	  		}
 

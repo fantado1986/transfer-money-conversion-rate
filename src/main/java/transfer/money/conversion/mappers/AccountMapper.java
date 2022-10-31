@@ -18,10 +18,10 @@ public class AccountMapper extends BaseAbstractMapper<Account, AccountDto>{
 	public Account convertToEntity(AccountDto accountDto) {
 		Account account = null;
 		if(accountDto != null) {
-			AtomicReference< Currency> currency = new AtomicReference<Currency>();
+			AtomicReference< Currency> currency = new AtomicReference<>();
 			 Arrays.stream(Currency.values())
 					.filter(c -> c.getLabel() == accountDto.getCurrency()).findFirst().ifPresent(cu -> currency.set(cu));
-			AtomicReference<AccountType> type = new AtomicReference<AccountType>();
+			AtomicReference<AccountType> type = new AtomicReference<>();
 			 Arrays.stream(AccountType.values())
 				.filter(t -> t.getLabel() == accountDto.getType()).findFirst().ifPresent(ty -> type.set(ty));
 			account = new Account(accountDto.getId(),accountDto.getNumber(),type.get(),currency.get(),accountDto.getBalance());

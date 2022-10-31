@@ -61,7 +61,7 @@ class TransactionControllerTest extends TestsBase{
 	    public void testTransferMoneyEndPointWithFailNoSufficientBalance() throws Exception {
 		   expectedEx.expect(BusinessException.class);
 		    expectedEx.expectMessage("There is no sufficient balance to debit from");
-		   transferMoneyRequest.setAmount(new BigDecimal(100001));//Does Not Exist
+		   transferMoneyRequest.setAmount(new BigDecimal(100001));//More than the balance
 	       assertThrows(BusinessException.class, () -> controller.transferMoney(transferMoneyRequest));
 	    }
 	   
@@ -69,7 +69,7 @@ class TransactionControllerTest extends TestsBase{
 	    public void testTransferMoneyEndPointWithFailForSavingAccount() throws Exception {
 		   expectedEx.expect(BusinessException.class);
 		    expectedEx.expectMessage("You can not do transfer fron saving account");
-		   transferMoneyRequest.setSourceAccount("456778834566");//Does Not Exist
+		   transferMoneyRequest.setSourceAccount("456778834566");//Saving Account
 	       assertThrows(BusinessException.class, () -> controller.transferMoney(transferMoneyRequest));
 	    }
 	
